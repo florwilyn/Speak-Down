@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Page</title>
+</head>
+<body>
+<ul>
+	{% for requests in forum %}
+	<li>
+		<form method="POST" action="#">
+			<p>{{requests.title}}</p>
+			<p>{{requests.content}}</p>
+			<p>by {{requests.user}} - {{requests.date}}</p>
+			<input type="hidden" name="request_id" value="{{requests.id}}">
+			<input type="submit" value="Post to forum">
+		</form>
+	</li>
+	<br></br>
+	{% endfor %}
+</ul>
+</body>
+</html>
