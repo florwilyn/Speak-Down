@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from forum.models import Forum
 
 def homepage(request):
-	forum = Forum.objects.filter(approved=False)
+	forum = Forum.objects.filter(approved=False).order_by('-date')
 	return render(request, 'admin.html', {'forum': forum})
 
 def approve(request):

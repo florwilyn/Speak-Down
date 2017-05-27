@@ -5,6 +5,7 @@ class Forum(models.Model):
 	user = models.CharField(max_length=25, default="anonymous")
 	title = models.CharField(max_length=30)
 	content = models.CharField(max_length=250)
+	image = models.ImageField(upload_to = './storage/', null=True)
 	date = models.DateTimeField(auto_now_add=True)
 	approved = models.BooleanField(default=False)
 

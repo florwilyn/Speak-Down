@@ -21,6 +21,9 @@
 				<!-- <a data-toggle="collapse" href="#collapse1"><b>#{{forum.title}}</b></a> -->
 			</div>
 			  <div class="panel-body">
+				  	{% if forum.image %}
+				  		<img src="{{forum.image.url}}" alt="" class="img-responsive center-block" />
+				  	{% endif %}
 			    {{forum.content}}
 			    <br><br>
 			    <small style="vertical-align: bottom;">
@@ -62,11 +65,12 @@
 	        </div>
 	        <div class="modal-body">
 	        	<div class="form-group">
-		          <form method="POST" action="send_forum/" name="submission">
+		          <form method="POST" action="send_forum/" name="submission" enctype="multipart/form-data"">
 						{% csrf_token %}
 						<input type="text" class="form-control" placeholder="Title" name="title" style="margin-bottom: 10px; border-radius: 0 !important;">
 						<input type="text" class="form-control" placeholder="Code Name" name="codename" style="margin-bottom: 10px; border-radius: 0 !important;">
 						<textarea class="form-control" rows="3" name="content" style="margin-bottom: 10px; border-radius: 0 !important;"></textarea>
+						<input type="file" name="myfile"/>
 						<!-- <label for="title"></label>
 						<input type="text" name="title" id="title">
 						<p>Content</p><input type="textarea" name="content" rows="4">
