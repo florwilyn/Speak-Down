@@ -1,11 +1,12 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from .models import Forum
+from .models import Comment
 
 def homepage(request):
-	forum = Forum.objects.all();
-	return render(request, 'home.html', {'forum': forum})
+	forum = Forum.objects.filter(approved=True)
+	comment = Comment.objects.all()
+	return render(request, 'home.html', {'forum': forum, 'comment': comment})
 
 def send(request):
 	if request.method == "POST":
@@ -13,15 +14,12 @@ def send(request):
 		content = request.POST.get('content', None)
 		codename = request.POST.get('codename', None)
 
-		forum = Forum(title=title, content=content, user=codename)
+		if codename != '':
+			forum = Forum(title=title, content=content, user=codename)
+		else: 
+			forum = Forum(title=title, content=content)
 		forum.save()
 		return redirect('/')
 
 	else:
 		return HttpResponse('Request must be POST.')
-=======
-
-def homepage(request):
-	return render(request, 'home.html')
-
->>>>>>> 6f8334cd8230b93795afd270e036cf1a5c373ed9

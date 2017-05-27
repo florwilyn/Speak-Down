@@ -7,12 +7,14 @@
 <ul>
 	{% for requests in forum %}
 	<li>
-		<form method="POST" action="#">
+		<form method="POST" action="{% url 'approve' %}">
+			{% csrf_token %}
 			<p>{{requests.title}}</p>
 			<p>{{requests.content}}</p>
 			<p>by {{requests.user}} - {{requests.date}}</p>
-			<input type="hidden" name="request_id" value="{{requests.id}}">
-			<input type="submit" value="Post to forum">
+			<input type="hidden" name="requests_id" value="{{requests.id}}">
+			<button type="submit">Post to Forum</button>
+			<button type="submit" formaction="{% url 'delete' %}">Delete</button>
 		</form>
 	</li>
 	<br></br>
