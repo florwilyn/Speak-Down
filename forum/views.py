@@ -1,4 +1,5 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from .models import Forum
 
@@ -18,3 +19,9 @@ def send(request):
 
 	else:
 		return HttpResponse('Request must be POST.')
+=======
+
+def homepage(request):
+	return render(request, 'home.html')
+
+>>>>>>> 6f8334cd8230b93795afd270e036cf1a5c373ed9
