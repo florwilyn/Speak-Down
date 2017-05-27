@@ -1,14 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Home</title>
 </head>
 <body>
-<form method="POST" action="send_forum">
+<form method="POST" action="send_forum/">
+	{% csrf_token %}
 	<p>Title</p><input type="text" name="title">
 	<p>Content</p><input type="textarea" name="content">
 	<p>Code Name</p><input type="text" name="codename">
 	<p></p><input type="submit" name="button">
 </form>
+
+<ul>
+	{% for forum in forum %}
+	<li>
+		<p>
+			<b>{{forum.title}}</b>
+		</p>
+		<p>{{forum.content}}</p>
+		<p>by {{forum.user}} - {{forum.date}}</p>
+	</li>
+	{% endfor %}
+</ul>
 </body>
 </html>

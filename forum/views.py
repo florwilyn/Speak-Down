@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
+from .models import Forum
 
 def homepage(request):
-	return render(request, 'home.html')
+	forum = Forum.objects.all();
+	return render(request, 'home.html', {'forum': forum})
 
 def send(request):
 	if request.method == "POST":
@@ -12,7 +14,7 @@ def send(request):
 
 		forum = Forum(title=title, content=content, user=codename)
 		forum.save()
-		return render(request, 'home.html')
+		return redirect('/')
 
 	else:
 		return HttpResponse('Request must be POST.')
