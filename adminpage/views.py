@@ -2,22 +2,22 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from forum.models import Forum
 
-
 def sign_in(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-    context = {}
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('/')
-        else:
-            context['error'] = 'Invalid Username or Password'
-            context['username'] = username
-    return render(request, 'sign_in.html', context=context)
+	if request.user.is_authenticated:
+		print("authenticated")
+		return redirect('/')
+	context = {}
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		user = authenticate(username=username, password=password)
+		if user:
+			login(request, user)
+			return redirect('/')
+	else:
+		context['error'] = 'Invalid Username or Password'
+		context['username'] = username
+	return render(request, 'sign_in.html', context=context)
 
 def sign_out(request):
     logout(request)

@@ -1,28 +1,26 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            {% block title %}
-                Sign-in
-            {% endblock%}
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        {% block styles %}{% endblock %}
-    </head>
-    <body>
-
-        <br>
-        <br>
-
-        <div class="container">
-        {% block content %}{% endblock %}
-        </div>
-        
-        <script src="{% static 'js/jquery.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        {% block js %}{% endblock %}
-        
-    </body>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+	<title>Home</title>
+</head>
+<body>
+	<nav class="navbar" style="background-color: #7b1113; border-radius: 0 !important;">
+		
+	</nav>
+	<div class="container" style="padding: 0px">
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <!-- <script src="https://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+	{% block script %}
+		
+	{% endblock %}
 </html>
