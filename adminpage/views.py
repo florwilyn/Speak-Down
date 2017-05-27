@@ -14,9 +14,9 @@ def sign_in(request):
 		if user:
 			login(request, user)
 			return redirect('/')
-	else:
-		context['error'] = 'Invalid Username or Password'
-		context['username'] = username
+		else:
+			context['error'] = 'Invalid Username or Password'
+			context['username'] = username
 	return render(request, 'sign_in.html', context=context)
 
 def sign_out(request):
