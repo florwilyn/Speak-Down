@@ -2,36 +2,91 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 	<title>Home</title>
 </head>
 <body>
-<form method="POST" action="send_forum/">
-	{% csrf_token %}
-	<p>Title</p><input type="text" name="title">
-	<p>Content</p><input type="textarea" name="content">
-	<p>Code Name</p><input type="text" name="codename">
-	<p></p><input type="submit" name="button">
-</form>
+<div class="container">
+	<div style="text-align: center;">
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin: 20px;">unsa man isuwat diri huhu</button>
+	</div>
 
-<ul>
-	{% for forum in forum %}
-	<li>
-		<p>
-			<b>{{forum.title}}</b>
-		</p>
-		<p>{{forum.content}}</p>
-		<p>by {{forum.user}} - {{forum.date}}</p>
-		<form method="POST" action="#">
-			<input type="textarea" name="comment">
-			<input type="submit" name="submit" value="comment">
-		</form>
-		{% for comments in comment %}
-			{% if forum.id == comments.forum.id %}
-				<p style="color: blue">{{comments.comment}} - {{comments.date}}</p>
-			{% endif %}
+	<ul>
+		{% for forum in forum %}
+		<li style="list-style-type:none;" style="text-align: center;">
+			<div class="panel panel-default" style="margin: 0 auto; display: block; width: 50%; margin-bottom: 10px">
+			<div class="title" style="margin-top: 10px">
+				<span style="margin: 10px"><b>#{{forum.title}}</b></span>
+				<!-- <a data-toggle="collapse" href="#collapse1"><b>#{{forum.title}}</b></a> -->
+			</div>
+			  <div class="panel-body">
+			    {{forum.content}}
+			    <br><br>
+			    <small style="vertical-align: bottom;">
+			    by {{forum.user}} - {{forum.date}}
+			    </small>
+			    <button class="btn" data-toggle="collapse" href="#collapse{{forum.id}}" style="float: right;">{{comment|length}} Comments</button>
+			  </div>
+			   <div id="collapse{{forum.id}}" class="panel-default collapse">
+				  <!-- Default panel contents -->
+				  <ul class="list-group">
+				  {% for comments in comment %}
+					{% if forum.id == comments.forum.id %}
+						<li class="list-group-item" style="border-left-style: none; border-right-style: none;">{{comments.comment}}<br><br><small>by anonymous - {{comments.date}}</small></li>
+					{% endif %}
+				{% endfor %}
+				  </ul>
+				  <div class="panel-footer" style="text-align: center;">
+				  	<form action="#" method="POST">
+				  		<div class="form-group">
+				  			<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+				  			<button type="submit" class="btn" style="margin-top: 5px">Comment</button>
+				  		</div>
+				  	</form>
+				  </div>
+				</div>
+			</div>
+		</li>
 		{% endfor %}
-	</li>
-	{% endfor %}
-</ul>
+	</ul>
+	<!-- Modal -->
+  	<div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Unsa man isuwat diri haha</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<div class="form-group">
+		          <form method="POST" action="send_forum/" name="submission">
+						{% csrf_token %}
+						<input type="text" class="form-control" placeholder="Title" name="title" style="margin-bottom: 10px; border-radius: 0 !important;">
+						<input type="text" class="form-control" placeholder="Code Name" name="codename" style="margin-bottom: 10px; border-radius: 0 !important;">
+						<textarea class="form-control" rows="3" name="content" style="margin-bottom: 10px; border-radius: 0 !important;"></textarea>
+						<!-- <label for="title"></label>
+						<input type="text" name="title" id="title">
+						<p>Content</p><input type="textarea" name="content" rows="4">
+						<p>Code Name</p><input type="text" name="codename">
+						<p></p><input type="submit" name="button"> -->
+					</form>
+				</div>
+	        </div>
+	        <div class="modal-footer">
+	        <button type="button" class="btn btn-default" onclick="document.submission.submit()">Submit</button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
+	  
+	</div>
+</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
