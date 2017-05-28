@@ -17,7 +17,9 @@
 	<!-- <a class="btn btn-large btn-primary" data-toggle="confirmation" data-title="Open Google?"
    href="https://google.com" target="_blank" id="example">Confirmation</a> -->
    <!-- <button class="example2 btn btn-primary">example confirm</button> -->
-
+<!-- <div class="alert alert-success" style="margin: 0 auto; width: 50%; margin-bottom: 10px; display: {{display}}" id="success_message">
+  <strong>Success!</strong> Your form has been submitted.
+</div> -->
 	<ul style="padding: 0px">
 		{% for forum in forum %}
 		<li style="list-style-type:none;" style="text-align: center;">
@@ -73,7 +75,7 @@
 	        </div>
 	        <div class="modal-body">
 	        	<div class="form-group">
-		          <form method="POST" action="send_forum/" name="submission" enctype="multipart/form-data"">
+		          <form method="POST" action="send_forum/" name="submission" id="submission" enctype="multipart/form-data"">
 						{% csrf_token %}
 						<input type="text" class="form-control" placeholder="Title" name="title" style="margin-bottom: 10px; border-radius: 0 !important;">
 						<input type="text" class="form-control" placeholder="Code Name" name="codename" style="margin-bottom: 10px; border-radius: 0 !important;">
@@ -88,7 +90,7 @@
 				</div>
 	        </div>
 	        <div class="modal-footer">
-	        <button type="button" class="example2 btn btn-default">Submit</button>
+	        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#confirm_send">Submit</button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	        </div>
 	      </div>
@@ -97,36 +99,66 @@
 	  </div>
 	  
 	</div>
+	<div class="modal fade" id="confirm_send" role="dialog">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	        <div class="modal-header" style="background-color: #337ab7; color: white">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Submit Form</h4>
+	        </div>
+	        <div class="modal-body">
+	        	You are about to submit a form.
+	        </div>
+	        <div class="modal-footer">
+	        	<button type="button" class="btn btn-primary _send">Post</button>
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
 </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- <script src="https://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
+<!--   <script src="https://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js"></script>
+ -->  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
   <script type="text/javascript">
-  	$('.example2').on('click', function () {
-                                    $.confirm({
-                                        title: 'Confirm Submission',
-                                        content: 'You are about to submit a form.',
-                                        buttons: {
-                                            submit: {
-                                                text: 'Submit',
-                                                btnClass: 'btn-blue',
-                                                keys: [
-                                                    'enter',
-                                                    'shift'
-                                                ],
-                                                action: function () {
-                                                    this.$content // reference to the content
-                                                    document.submission.submit()
-                                                    // $.alert('Submitting...');
-                                                }
-                                            },
-                                            cancel: function () {
-                                                // $.alert('Canceled!');
-                                            },
-                                        }
-                                    });
-                                });
+  $('._send').on('click', function(){
+	$('#submission').submit()
+})
+  	// $('.example2').on('click', function () {
+   //                                  $.confirm({
+   //                                      title: 'Confirm Submission',
+   //                                      content: 'You are about to submit a form.',
+   //                                      buttons: {
+   //                                          submit: {
+   //                                              text: 'Submit',
+   //                                              btnClass: 'btn-blue',
+   //                                              keys: [
+   //                                                  'enter',
+   //                                                  'shift'
+   //                                              ],
+   //                                              action: function () {
+   //                                                  this.$content // reference to the content
+   //                                                  document.submission.submit()
+   //                                                  // $.alert('Submitting...');
+   //                                              }
+   //                                          },
+   //                                          cancel: function () {
+   //                                              // $.alert('Canceled!');
+   //                                          },
+   //                                      }
+   //                                  });
+   //                              });
+//   	$(function() {
+//     // setTimeout() function will be fired after page is loaded
+//     // it will wait for 5 sec. and then will fire
+//     // $("#successMessage").hide() function
+// //     setTimeout(function() {
+// //         $("#success_message").hide('blind', {}, 500)
+// //     }, 5000);
+// // });
+
   </script>
 </html>

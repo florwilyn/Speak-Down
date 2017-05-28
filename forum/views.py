@@ -6,7 +6,7 @@ from .models import Comment
 def homepage(request):
 	forum = Forum.objects.filter(approved=True).order_by('-date')
 	comment = Comment.objects.all().order_by('-date')
-	return render(request, 'home.html', {'forum': forum, 'comment': comment})
+	return render(request, 'home.html', {'forum': forum, 'comment': comment, 'display': "none"})
 
 def send(request):
 	if request.method == "POST":
@@ -20,6 +20,10 @@ def send(request):
 		else: 
 			forum = Forum(title=title, content=content, image=image)
 		forum.save()
+		
+		forum = Forum.objects.filter(approved=True).order_by('-date')
+		comment = Comment.objects.all().order_by('-date')
+		return render(request, 'home.html', {'forum': forum, 'comment': comment, 'display': "block"})
 		return redirect('/')
 
 	else:
