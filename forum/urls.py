@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.homepage),
 	url(r'^send_forum/$', views.send),
+	url(r'^add_comment/$', views.comment, name='add_comment'),
 ]

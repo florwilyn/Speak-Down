@@ -5,13 +5,13 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-	<title>Admin - Home</title>
+	<title>Home</title>
 </head>
-<body style="background-color: #014421">
-	<nav class="navbar navbar-fixed-top" style="background-color: #7b1113; border-radius: 0 !important; height: 86px;" >
-	<button type="button" class="btn btn-default btn-lg" onclick="location.href = {% url 'sign_out' %};" style="margin: 20px;  color: white; float: right; background-color: #014421"><b>Sign Out</b></button>
+<body>
+	<nav class="navbar" style="background-color: #7b1113; border-radius: 0 !important;">
+		
 	</nav>
-	<div class="container" style="padding: 0px; padding-top: 100px; background-color: #e1e1e1">
+	<div class="container" style="padding: 0px">
 		{% block content %}
 		{% endblock %}
 	</div>
@@ -20,7 +20,4 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <!-- <script src="https://raw.githubusercontent.com/mistic100/Bootstrap-Confirmation/master/bootstrap-confirmation.min.js"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
-	{% block script %}
-
-	{% endblock %}
 </html>

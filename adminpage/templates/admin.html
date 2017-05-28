@@ -10,6 +10,8 @@
 <body>
 <div class="container" style="padding: 20px"> -->
 {% block content %}
+	<h3 style="text-align: center;"><b>Hello, {{request.user.username}}</b></h3>
+	<h4 style="text-align: center; margin-top: 0px">You have {{ forum|length }} submissions to be reviewed.</h4>
 	<ul>
 		{% for forum in forum %}
 		<li style="list-style-type:none;" style="text-align: center;">

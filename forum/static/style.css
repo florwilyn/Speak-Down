@@ -3,3 +3,23 @@
   background-color: #e36d6d;
   /*border-color: #7b1113;*/
 }
+
+.navbar{
+	background-image: url('navbar.jpg');
+	height: auto;
+}
+
+.container{
+	/*background-image: url('bg.jpg');
+	background-size:cover;
+	background-repeat: no-repeat;
+	overflow-y: scroll;*/
+
+	background-image: url("bg.jpg");
+	background-repeat: no-repeat;
+	background-attachment:fixed;
+	background-size: cover;
+	/*margin: 0px;*/
+	/*overflow-y: scroll;*/
+	/*background-repeat: no-repeat;*/
+}

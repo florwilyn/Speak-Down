@@ -25,5 +25,16 @@ def send(request):
 	else:
 		return HttpResponse('Request must be POST.')
 
-# def login():
-# 	login(user,)
+def comment(request):
+	if request.method == "POST":
+		comment = request.POST.get('comment', None)
+		forum = request.POST.get('forum_id', None)
+
+		get_forum = Forum.objects.get(id=forum)
+
+		new_comment = Comment(forum=get_forum,comment=comment)
+		new_comment.save()
+		return redirect('/')
+
+	else:
+		return HttpResponse('Request must be POST.')
