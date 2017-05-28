@@ -12,10 +12,17 @@ def sign_in(request):
 		user = authenticate(username=username, password=password)
 		if user:
 			login(request, user)
+<<<<<<< HEAD
 			return redirect('admin_page')
 	# else:
 	# 	context['error'] = 'Invalid Username or Password'
 	# 	context['username'] = username
+=======
+			return redirect('/')
+		else:
+			context['error'] = 'Invalid Username or Password'
+			context['username'] = username
+>>>>>>> 26873f3fd19bbd7bd24eb55f15c778e8d1f80874
 	return render(request, 'sign_in.html', context=context)
 
 def sign_out(request):
